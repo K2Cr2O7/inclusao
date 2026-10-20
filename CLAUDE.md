@@ -25,9 +25,10 @@ constitution → specify → clarify → plan → tasks → analyze → implemen
 - O `/speckit-plan` é o plano; não há plano separado.
 - Depois do `/speckit-tasks`, cada tarefa (ou bloco) passa a uma issue no GitHub (`/speckit-taskstoissues` ou `gh issue create`).
 - **Implementação, um ficheiro de cada vez:** escrever → `pnpm lint --fix` → `pnpm typecheck` → testes → ficheiro seguinte.
-- **No fim de cada bloco:** correr `pnpm lint && pnpm typecheck && pnpm test && pnpm verificar && pnpm build` (os que já existirem), rever contra as regras abaixo e parar à espera de confirmação.
+- **No fim de cada bloco:** correr `pnpm lint && pnpm typecheck && pnpm test && pnpm verificar && pnpm build`, rever contra as regras abaixo e parar à espera de confirmação.
+- **Verificações ainda inexistentes:** as verificações por ficheiro e por bloco aplicam-se aos comandos já disponíveis. Na entrega, indicar "não aplicável — ainda não configurado" para as que não existem; **nunca as marcar como concluídas**.
 - **Entrega:** ficheiros criados/alterados (com linhas, componente/função tocados) e
-  `lint ✅ | typecheck ✅ | test ✅ | verificar ✅ | build ✅ | revisão ✅`.
+  `lint ✅ | typecheck ✅ | test ✅ | verificar ✅ | build ✅ | revisão ✅` (ou "n/a — ainda não configurado" em cada uma que não exista).
 - Ao propor ou alterar código, dizer sempre em que ficheiro e em que componente, esquema ou função.
 - Em caso de dúvida de desenho, contradição ou ambiguidade: **parar e perguntar**.
 
