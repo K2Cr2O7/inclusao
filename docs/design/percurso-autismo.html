@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock — Percurso: autismo</title>
+<!-- MOCK DE REFERÊNCIA VISUAL. Não é código de produção. As páginas de Situação são a funcionalidade 002. -->
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#F6F7F5; --superficie:#FFFFFF; --texto:#17262B; --texto-2:#3D4D53; --texto-3:#4A5A60;
+  --borda:#D9E2E4; --borda-forte:#B8C6C9; --destaque:#0F5C6E; --destaque-escuro:#0A3F4C;
+  --nota:#E6EFF0; --escuro:#1E3A40; --rodape:#17262B; --linha:#C9D6D8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font-family:'Atkinson Hyperlegible','Segoe UI',system-ui,sans-serif;font-size:18px;line-height:1.55}
+a{color:var(--destaque)} a:hover{color:var(--destaque-escuro)}
+a:focus-visible{outline:3px solid var(--destaque);outline-offset:2px}
+.contentor{max-width:1120px;margin:0 auto;padding-inline:16px}
+@media (min-width:600px){.contentor{padding-inline:24px}}
+header{background:var(--superficie);border-bottom:1px solid var(--borda)}
+.topo{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between;padding-block:16px}
+.marca{text-decoration:none;color:var(--texto);display:flex;flex-direction:column}
+.marca strong{font-size:24px;line-height:1.2}.marca span{font-size:15px;color:var(--texto-3)}
+.pilulas{display:flex;gap:8px;flex-wrap:wrap;font-size:15px}
+.pilulas a{text-decoration:none;color:var(--texto);border:1px solid var(--borda-forte);border-radius:999px;padding:10px 16px}
+main{padding-block:32px 72px;display:flex;flex-direction:column;gap:32px}
+.migalhas{font-size:15px;color:var(--texto-3);display:flex;flex-wrap:wrap;gap:8px}
+h1{margin:0;font-size:clamp(30px,5vw,42px);line-height:1.15}
+.layout{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+ol.etapas{flex:999 1 560px;min-width:0;list-style:none;margin:0;padding:0}
+ol.etapas li{display:flex;gap:20px}
+.trilho{display:flex;flex-direction:column;align-items:center;flex:0 0 48px}
+.num{width:48px;height:48px;border-radius:999px;background:var(--destaque);color:#fff;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center}
+.fio{flex:1 1 auto;width:3px;background:var(--linha);min-height:24px}
+.etapa{flex:1 1 auto;min-width:0;background:var(--superficie);border:2px solid var(--borda);border-radius:14px;padding:24px;margin-bottom:20px;display:flex;flex-direction:column;gap:12px}
+.etapa h2{margin:0;font-size:24px;line-height:1.25}
+.rotulo{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--texto-3)}
+aside{flex:1 1 280px;display:flex;flex-direction:column;gap:16px}
+.caixa{background:var(--superficie);border:2px solid var(--borda);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.caixa.escura{background:var(--escuro);color:#F1F5F5;border:none}
+.caixa.suave{background:var(--nota);border:none}
+footer{background:var(--rodape);color:#DCE5E7}
+footer .contentor{padding-block:32px;font-size:16px}
+</style>
+</head>
+<body>
+<header>
+  <div class="contentor topo">
+    <a class="marca" href="pagina-inicial.html"><strong>[Nome do site]</strong><span>Guia de apoios · Açores</span></a>
+    <div class="pilulas"><a href="#">Leitura fácil</a><a href="#">LGP</a></div>
+  </div>
+</header>
+
+<main class="contentor">
+  <nav class="migalhas" aria-label="Caminho">
+    <a href="pagina-inicial.html">Início</a><span aria-hidden="true">/</span><span>Por onde começo?</span><span aria-hidden="true">/</span><span aria-current="page">Autismo</span>
+  </nav>
+
+  <div style="display:flex;flex-direction:column;gap:14px;max-width:800px">
+    <h1>O meu filho tem (ou pode ter) autismo</h1>
+    <p style="margin:0;font-size:20px;color:var(--texto-2)">Um percurso, passo a passo, desde a primeira suspeita até aos apoios. Não precisa de ler tudo de uma vez: veja em que etapa está.</p>
+    <p style="margin:0;font-size:14px;color:var(--texto-3)">Verificado em [data] · por [nome, função] · <a href="#fontes">Fontes</a></p>
+  </div>
+
+  <div class="layout">
+    <ol class="etapas">
+      <li><div class="trilho"><span class="num">1</span><span class="fio"></span></div>
+        <div class="etapa"><h2>Primeira suspeita</h2>
+          <div><span class="rotulo">O que acontece</span><br>Notou diferenças no desenvolvimento, ou a creche ou a escola falaram consigo.</div>
+          <div><span class="rotulo">A quem se dirigir</span><br>Médico de família ou pediatra — [a confirmar: como é feito o encaminhamento na Terceira]</div>
+          <a href="#" style="font-weight:700;font-size:16px">Mais em: Saúde →</a></div></li>
+      <li><div class="trilho"><span class="num">2</span><span class="fio"></span></div>
+        <div class="etapa"><h2>Avaliação e diagnóstico</h2>
+          <div><span class="rotulo">O que acontece</span><br>[A confirmar com a pediatria e a pedopsiquiatria: quem avalia, como, quanto tempo demora]</div>
+          <div><span class="rotulo">A quem se dirigir</span><br>[Pediatria · Pedopsiquiatria — onde e como se marca] · Intervenção precoce (0–6 anos)</div>
+          <a href="#" style="font-weight:700;font-size:16px">Mais em: Saúde →</a></div></li>
+      <li><div class="trilho"><span class="num">3</span><span class="fio"></span></div>
+        <div class="etapa"><h2>Terapias</h2>
+          <div><span class="rotulo">O que acontece</span><br>[Que terapias existem na ilha, o que é comparticipado, listas de espera]</div>
+          <div><span class="rotulo">A quem se dirigir</span><br>[Centros e serviços de terapia — a listar]</div>
+          <a href="#" style="font-weight:700;font-size:16px">Mais em: Terapias →</a></div></li>
+      <li><div class="trilho"><span class="num">4</span><span class="fio"></span></div>
+        <div class="etapa"><h2>Escola</h2>
+          <div><span class="rotulo">O que acontece</span><br>A Equipa Multidisciplinar de Apoio à Educação Inclusiva (EMAEI) da escola avalia e propõe medidas de suporte. Os pais participam e dão concordância.</div>
+          <div><span class="rotulo">A quem se dirigir</span><br>Escola da criança · EMAEI</div>
+          <a href="#" style="font-weight:700;font-size:16px">Mais em: Educação →</a></div></li>
+      <li><div class="trilho"><span class="num">5</span></div>
+        <div class="etapa"><h2>Apoios e direitos</h2>
+          <div><span class="rotulo">O que acontece</span><br>Atestado multiuso, apoios financeiros e benefícios a que a família pode ter direito.</div>
+          <div><span class="rotulo">A quem se dirigir</span><br>Balcão da Inclusão (Angra) · Lojas RIAC · centro de saúde (junta médica)</div>
+          <a href="#" style="font-weight:700;font-size:16px">Mais em: Apoios financeiros →</a></div></li>
+    </ol>
+
+    <aside>
+      <div class="caixa"><strong>Outras formas de ver esta página</strong>
+        <a href="#">Ver em Língua Gestual Portuguesa</a><a href="#">Versão em leitura fácil</a><a href="#">Ouvir a conversa com [profissional] (podcast)</a></div>
+      <div class="caixa escura"><strong style="color:#fff">O que não existe neste percurso</strong>
+        <span style="font-size:16px;color:#D3DFE1">[Lacunas documentadas — a preencher depois das conversas]</span></div>
+      <div class="caixa suave"><strong>Não está sozinho/a</strong>
+        <span style="font-size:16px;color:#2C3B40">Associações e grupos de famílias: [a confirmar]</span></div>
+      <div class="caixa" id="fontes" style="font-size:16px"><strong style="font-size:18px">Fontes</strong>
+        <span>[Ligações oficiais — Jornal Oficial, portais do Governo dos Açores]</span>
+        <a href="#">Encontrou um erro nesta página?</a></div>
+    </aside>
+  </div>
+</main>
+
+<footer><div class="contentor">Projeto independente · Não é um serviço oficial · Confirme sempre junto do serviço indicado.</div></footer>
+</body>
+</html>

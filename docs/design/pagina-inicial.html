@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock — Página inicial</title>
+<!-- MOCK DE REFERÊNCIA VISUAL. Não é código de produção.
+     No site real o tipo de letra é alojado no próprio site (constituição, princípio 13). -->
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#F6F7F5; --superficie:#FFFFFF; --texto:#17262B; --texto-2:#3D4D53; --texto-3:#4A5A60;
+  --borda:#D9E2E4; --borda-forte:#B8C6C9; --destaque:#0F5C6E; --destaque-escuro:#0A3F4C;
+  --nota:#E6EFF0; --escuro:#1E3A40; --escuro-2:#2A4A51; --rodape:#17262B; --embreve:#EEF1F0;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font-family:'Atkinson Hyperlegible','Segoe UI',system-ui,sans-serif;font-size:18px;line-height:1.55}
+a{color:var(--destaque)} a:hover{color:var(--destaque-escuro)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--destaque);outline-offset:2px}
+.contentor{max-width:1120px;margin:0 auto;padding-inline:16px}
+@media (min-width:600px){.contentor{padding-inline:24px}}
+header{background:var(--superficie);border-bottom:1px solid var(--borda)}
+.topo{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between;padding-block:16px}
+.marca{text-decoration:none;color:var(--texto);display:flex;flex-direction:column}
+.marca strong{font-size:24px;line-height:1.2}.marca span{font-size:15px;color:var(--texto-3)}
+nav.temas{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:16px}
+nav.temas a{color:var(--texto);text-decoration:none;padding:10px 0}
+.pilulas{display:flex;gap:8px;flex-wrap:wrap;font-size:15px}
+.pilulas a{text-decoration:none;color:var(--texto);border:1px solid var(--borda-forte);border-radius:999px;padding:10px 16px}
+.heroi{background:var(--superficie)}
+.heroi .contentor{padding-block:56px 48px;display:flex;flex-direction:column;gap:24px}
+h1{margin:0;font-size:clamp(32px,5vw,44px);line-height:1.15;max-width:760px}
+.lead{margin:0;font-size:20px;color:var(--texto-2);max-width:680px}
+.pesquisa{display:flex;flex-direction:column;gap:8px;max-width:640px}
+.pesquisa label{font-weight:700;font-size:16px}
+.pesquisa .linha{display:flex;gap:8px;flex-wrap:wrap}
+.pesquisa input{flex:1 1 260px;min-height:52px;padding:0 16px;font:inherit;font-size:17px;border:2px solid #8FA3A8;border-radius:10px;background:#fff;color:var(--texto)}
+.btn{min-height:52px;padding:0 24px;font:inherit;font-weight:700;color:#fff;background:var(--destaque);border:none;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.nota-ambito{margin:0;font-size:15px;color:var(--texto-2);background:var(--nota);border-radius:8px;padding:10px 14px;align-self:flex-start}
+section{padding-block:40px}
+h2{margin:0;font-size:clamp(24px,3.5vw,32px);line-height:1.2}
+.situacoes{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
+.cartao{flex:1 1 240px;display:flex;flex-direction:column;gap:10px;padding:24px;background:var(--superficie);border:2px solid var(--borda);border-radius:14px;text-decoration:none;color:var(--texto);min-height:170px}
+.cartao .t{font-size:21px;font-weight:700;line-height:1.3}.cartao .d{font-size:16px;color:var(--texto-2)}
+.cartao .acao{margin-top:auto;font-size:16px;font-weight:700;color:var(--destaque)}
+.cartao.embreve{background:var(--embreve);border-style:dashed;border-color:var(--borda-forte);color:var(--texto-2)}
+.cartao.embreve .acao{color:var(--texto-2);font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+.bloco{background:var(--superficie);border:2px solid var(--borda);border-radius:18px;padding:32px;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center}
+.bloco .texto{flex:999 1 420px;display:flex;flex-direction:column;gap:10px}
+.etiqueta{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--destaque)}
+.meta{margin:0;font-size:14px;color:var(--texto-3)}
+.duas{display:flex;flex-wrap:wrap;gap:24px}
+.painel{flex:1 1 420px;background:var(--superficie);border:2px solid var(--borda);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:16px}
+.contacto{display:flex;flex-direction:column;gap:2px;padding-bottom:14px;border-bottom:1px solid #E3E9EA}
+.painel.escuro{background:var(--escuro);color:#F1F5F5;border:none}
+.painel.escuro h2{color:#fff}.painel.escuro a{color:#fff}
+.lacuna{background:var(--escuro-2);border-radius:10px;padding:14px 16px}
+footer{background:var(--rodape);color:#DCE5E7}
+footer .contentor{padding-block:48px;display:flex;flex-wrap:wrap;gap:32px 64px}
+footer a{color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <div class="contentor topo">
+    <a class="marca" href="#"><strong>[Nome do site]</strong><span>Guia de apoios · Açores</span></a>
+    <nav class="temas" aria-label="Temas">
+      <a href="#">Saúde</a><a href="#">Terapias</a><a href="#">Educação</a><a href="#">Apoios financeiros</a><a href="#">Direitos</a><a href="#">Emprego</a><a href="#">Contactos</a>
+    </nav>
+    <div class="pilulas"><a href="#">Leitura fácil</a><a href="#">LGP</a></div>
+  </div>
+</header>
+
+<main>
+  <div class="heroi">
+    <div class="contentor">
+      <h1>Apoios para pessoas com deficiência e para quem cuida, nos Açores.</h1>
+      <p class="lead">O que existe, como se pede e a quem se dirigir — e também o que ainda não existe. Escrito em linguagem simples, com fontes oficiais.</p>
+      <form class="pesquisa" role="search" onsubmit="return false">
+        <label for="procurar">Procurar um apoio ou serviço</label>
+        <div class="linha">
+          <input id="procurar" type="search" placeholder="Ex.: atestado multiuso, terapia da fala">
+          <button class="btn" type="submit">Procurar</button>
+        </div>
+      </form>
+      <p class="nota-ambito">Informação regional válida em todos os Açores · Contactos e serviços, por agora, da ilha Terceira</p>
+    </div>
+  </div>
+
+  <section aria-labelledby="comecar">
+    <div class="contentor">
+      <h2 id="comecar">Por onde começo?</h2>
+      <p style="margin:6px 0 0;color:var(--texto-2)">Escolha a situação mais próxima da sua.</p>
+      <div class="situacoes">
+        <a class="cartao" href="percurso-autismo.html">
+          <span class="t">O meu filho tem (ou pode ter) autismo</span>
+          <span class="d">Da primeira suspeita ao diagnóstico, terapias, escola e apoios.</span>
+          <span class="acao">Ver o percurso →</span>
+        </a>
+        <!-- No site real, as situações ainda não publicadas NÃO aparecem (regra 1 do domínio).
+             Aqui ficam como "em preparação" só para mostrar a estrutura completa. -->
+        <div class="cartao embreve"><span class="t">Tenho uma criança com deficiência</span><span class="d">Saúde, terapias, escola e apoios para a família.</span><span class="acao">Em preparação</span></div>
+        <div class="cartao embreve"><span class="t">Tenho uma incapacidade</span><span class="d">Atestado, direitos, emprego e apoios para adultos.</span><span class="acao">Em preparação</span></div>
+        <div class="cartao embreve"><span class="t">Cuido de alguém</span><span class="d">Estatuto de cuidador informal, apoios e descanso.</span><span class="acao">Em preparação</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="primeiro" style="padding-top:0">
+    <div class="contentor">
+      <div class="bloco">
+        <div class="texto">
+          <span class="etiqueta">O primeiro passo, quase sempre</span>
+          <h2 id="primeiro">Atestado médico de incapacidade multiuso</h2>
+          <p style="margin:0;color:var(--texto-2)">É o documento que abre a porta a muitos outros apoios. Explicamos o que é, como se pede na Terceira e o que acontece na junta médica.</p>
+          <p class="meta">Verificado em [data] · por [nome, função]</p>
+        </div>
+        <a class="btn" href="#" style="flex:1 1 220px">Como pedir o multiuso</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;padding-bottom:72px">
+    <div class="contentor duas">
+      <div class="painel" aria-labelledby="contactos">
+        <h2 id="contactos" style="font-size:26px">Contactos essenciais · Terceira</h2>
+        <div class="contacto"><strong>Balcão da Inclusão — Segurança Social, Angra do Heroísmo</strong><span style="font-size:16px;color:var(--texto-2)">[morada · telefone · horário]</span></div>
+        <div class="contacto"><strong>Gabinete Local de Apoio ao Cuidador Informal</strong><span style="font-size:16px;color:var(--texto-2)">No centro de saúde do concelho · [telefone · horário]</span></div>
+        <div class="contacto"><strong>Hospital de Santo Espírito da Ilha Terceira — Serviço Social</strong><span style="font-size:16px;color:var(--texto-2)">[telefone · horário]</span></div>
+        <div class="contacto"><strong>Centro de Qualificação e Emprego de Angra</strong><span style="font-size:16px;color:var(--texto-2)">[morada · telefone]</span></div>
+        <a href="#" style="font-weight:700">Todos os contactos →</a>
+      </div>
+      <div class="painel escuro" aria-labelledby="naoexiste">
+        <h2 id="naoexiste" style="font-size:26px">O que não existe</h2>
+        <p style="margin:0;font-size:17px;color:#D3DFE1">Respostas que fazem falta na ilha. Só publicamos o que conseguimos documentar.</p>
+        <div class="lacuna">[Lacuna 1 — a documentar]</div>
+        <div class="lacuna">[Lacuna 2 — a documentar]</div>
+        <a href="#" style="font-weight:700">Conhece uma falta que devíamos registar? →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contentor">
+    <div style="flex:999 1 480px;display:flex;flex-direction:column;gap:10px">
+      <strong style="color:#fff">Projeto independente</strong>
+      <p style="margin:0;font-size:16px">Este site é feito por pessoas da comunidade. Não é um serviço oficial nem fala em nome de nenhuma instituição. Reunimos a informação a partir de fontes oficiais e de conversas com profissionais e com quem vive estas situações. As regras mudam: antes de tomar uma decisão, confirme junto do serviço indicado.</p>
+    </div>
+    <nav aria-label="Rodapé" style="flex:1 1 200px;display:flex;flex-direction:column;gap:8px;font-size:16px">
+      <a href="#">Sobre o projeto</a><a href="#">Quem colabora</a><a href="#">Encontrou um erro?</a><a href="#">Fontes</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
