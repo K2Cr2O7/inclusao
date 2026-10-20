@@ -60,11 +60,11 @@ Usa este texto como base para a constituição:
 > 2. **Nada se publica sem prova.** Um Apoio publicado tem pelo menos uma Fonte oficial e uma Verificação. Uma notícia, sozinha, não chega.
 > 3. **Conteúdo separado do código.** O conteúdo é escrito em Markdown simples e dados estruturados; nada de componentes dentro dos textos. O conteúdo tem de sobreviver a uma migração de tecnologia.
 > 4. **URLs estáveis e em português** (ex.: `/apoios/prestacao-social-inclusao`). Se mudarem, há redirecionamento.
-> 5. **Datas visíveis.** Cada página de conteúdo mostra "verificado em"; o que passa do prazo de verificação aparece como "a rever".
+> 5. **Datas visíveis.** Cada página de conteúdo mostra "verificado em"; o que passa do prazo de verificação aparece como "a rever". **[revisto]** Um rebuild agendado publica de novo o site, para o aviso "a rever" estar sempre atualizado mesmo sem alterações ao conteúdo.
 > 6. **Independência.** O site diz claramente que é um projeto independente, não um serviço oficial, e que as regras podem mudar.
 >
 > **Acessibilidade e experiência**
-> 7. **WCAG 2.2 AA é obrigatório**, verificado automaticamente em cada alteração.
+> 7. **WCAG 2.2 AA é obrigatório**, verificado automaticamente em cada alteração **[revisto]** e manualmente em cada tipo de página novo ou alterado (só teclado, leitor de ecrã, zoom a 200 %, 320 px).
 > 8. **[revisto] HTML semântico primeiro.** Todo o conteúdo e a navegação funcionam sem JavaScript. Componentes interativos no browser só com justificação escrita; a pesquisa é a única exceção prevista.
 > 9. **Pensado primeiro para o telemóvel**, testado a 320 px de largura.
 > 10. **Linguagem simples**: frases curtas, sem jargão jurídico por explicar.
@@ -172,13 +172,13 @@ Stack escolhido (base do nobody):
 - **`apps/web`: Next.js (App Router) + React**, com `output: 'export'` e `trailingSlash: true`. Só Server Components; sem `next/image` (ou com `unoptimized`), sem `next/script`, sem middleware nem rotas de API. Tipo de letra **Atkinson Hyperlegible com `next/font/local`**.
 - **`packages/dominio`**: tipos das entidades, interfaces de repositório e regras do domínio em funções puras que devolvem `Result`. Sem dependências externas.
 - **`packages/conteudo`**: lê o Markdown (Apoios, Situações, Lacunas) e o YAML (Portas, Fontes, Colaboradores, Temas) da pasta `conteudo/` na raiz, valida com **esquemas Zod** e entrega entidades do domínio. Implementa as interfaces de repositório.
-- **`packages/errors`** (Result e erros de domínio) e **`packages/config`** (ESLint e tsconfig partilhados), adaptados do nobody. Logger mínimo para os scripts.
+- **`packages/errors`** (Result e erros de domínio) e **`packages/config`** (ESLint e tsconfig partilhados), adaptados do nobody. Logger mínimo para os scripts. **[revisto]** `errors` é um núcleo interno sem dependências, o único que o domínio pode importar; a direção de dependências entre pacotes está no `CLAUDE.md` (secção Arquitetura).
 - **Comando `pnpm verificar`**: corre todas as invariantes sobre o conteúdo e falha com uma lista clara de erros. Corre antes do `build` e no CI.
 - **CSS Modules com variáveis** (tokens de cor, tipo e espaçamento em `globals.css`), sem framework de CSS (sem Tailwind).
 - **Pesquisa com Pagefind**, a correr sobre a pasta `out/` depois do `next build`; o campo só aparece com JavaScript.
 - **Redirecionamentos**: os `redirects` do `next.config` não funcionam com exportação estática; resolver no alojamento (ficheiro de redirects) ou com páginas geradas. Decidir no plano depois de confirmar o que o alojamento suporta.
 - Testes: **Vitest** (regras do domínio e leitura do conteúdo), **Playwright + axe-core** (acessibilidade e funcionamento sem JS), **Lighthouse CI**, **lychee** (links partidos).
-- **CI no GitHub Actions**: lint, typecheck, testes, verificar, build, axe, Lighthouse. **Rebuild agendado semanal** (para a regra "a rever") e lychee no mesmo agendamento. **SonarCloud** (grátis para repositório público).
+- **CI no GitHub Actions**: lint, typecheck, testes, verificar, build, axe, Lighthouse. **Rebuild agendado semanal com nova publicação** (para a regra "a rever") e lychee no mesmo agendamento. **SonarCloud** (grátis para repositório público).
 - Alojamento europeu: **statichost.eu** (Suécia); alternativa Bunny.net (Eslovénia). Confirmar redirecionamentos e pré-visualizações por PR. Sem estatísticas na 001.
 - Do nobody **não** vêm: base de dados/Prisma, autenticação, i18n/next-intl, Tailwind, Vercel, pacotes da Bug Byte.
 
