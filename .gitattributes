@@ -1,0 +1,13 @@
+# Quebras de linha LF em todos os ficheiros de texto, em qualquer sistema.
+# Necessário para os scripts .sh do Spec Kit correrem no bash.
+* text=auto eol=lf
+
+# Binários: nunca converter
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary

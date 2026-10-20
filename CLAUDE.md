@@ -25,18 +25,29 @@ constitution → specify → clarify → plan → tasks → analyze → implemen
 - O `/speckit-plan` é o plano; não há plano separado.
 - Depois do `/speckit-tasks`, cada tarefa (ou bloco) passa a uma issue no GitHub (`/speckit-taskstoissues` ou `gh issue create`).
 - **Implementação, um ficheiro de cada vez:** escrever → `pnpm lint --fix` → `pnpm typecheck` → testes → ficheiro seguinte.
-- **No fim de cada bloco:** correr `pnpm lint && pnpm typecheck && pnpm test && pnpm verificar && pnpm build`, rever contra as regras abaixo e parar à espera de confirmação.
+- **No fim de cada bloco:** correr `pnpm lint && pnpm typecheck && pnpm test && pnpm verificar && pnpm build` (os que já existirem), rever contra as regras abaixo e parar à espera de confirmação.
 - **Entrega:** ficheiros criados/alterados (com linhas, componente/função tocados) e
   `lint ✅ | typecheck ✅ | test ✅ | verificar ✅ | build ✅ | revisão ✅`.
 - Ao propor ou alterar código, dizer sempre em que ficheiro e em que componente, esquema ou função.
 - Em caso de dúvida de desenho, contradição ou ambiguidade: **parar e perguntar**.
+
+### Tarefas pontuais (fora do Spec Kit)
+
+Manutenção, documentação, configuração e correções que não pertencem a uma funcionalidade:
+
+**issue → plano proporcional à alteração → aprovação → implementação → PR.**
+
+O plano diz que ficheiros cria ou altera e porquê; pode ser curto, mas é sempre aprovado antes de implementar.
 
 ---
 
 ## Git
 
 - **Nunca fazer push direto para `main`.** Uma branch por issue: `feature/…`, `fix/…`, `chore/…`, `docs/…`.
-- PR para `main` com `Closes #X`, CI verde e avisos do SonarCloud resolvidos.
+- PR para `main` com `Closes #X` e as verificações aplicáveis a passar.
+- **Verificações aplicáveis:** exigem-se as que já existem no repositório. Cada verificação nova
+  (CI, SonarCloud, axe, Lighthouse, lychee) passa a obrigatória a partir do PR que a introduz.
+  Enquanto não houver CI, o PR indica as verificações manuais feitas.
 - **Merge só com aprovação explícita.**
 - Exceção única já usada: o commit inicial de preparação (repositório vazio).
 
@@ -46,19 +57,29 @@ constitution → specify → clarify → plan → tasks → analyze → implemen
 
 ```
 apps/web            (apresentação: Next.js, output: 'export')
-   │ importa
-packages/conteudo   (infraestrutura: lê Markdown/YAML, valida com Zod)
-   │ implementa interfaces de
-packages/dominio    (entidades, regras e interfaces de repositório; sem dependências)
+   │            └──────────────┐ tipos e funções puras
+   ▼ repositórios               ▼
+packages/conteudo ──────► packages/dominio ──────► packages/errors
+(infraestrutura:          (entidades, regras,       (Result e erros base;
+ Markdown/YAML + Zod)      interfaces de             núcleo interno sem
+                           repositório)              dependências)
 ```
+
+Direções permitidas: `web → conteudo`, `web → dominio`, `conteudo → dominio`,
+`dominio → errors`; qualquer pacote pode importar `errors`.
+
+- `web` importa do domínio os **tipos** e as **funções puras** (ex.: cálculo de "a rever"); obtém o **conteúdo** sempre através dos repositórios de `conteudo`.
+- `errors` não tem dependências; é a única importação permitida ao domínio.
 
 `conteudo/` (na raiz) guarda o conteúdo em Markdown e YAML, separado do código.
 
 | Importação | Onde | Violação |
 |---|---|---|
-| `next`, `react`, `zod`, `node:fs`, qualquer pacote externo | `packages/dominio` | CA-01 |
+| `next`, `react`, `zod`, `node:fs`, qualquer pacote externo | `packages/dominio`, `packages/errors` | CA-01 |
+| `packages/conteudo` ou `apps/web` | `packages/dominio` | CA-01 |
+| Qualquer outro pacote | `packages/errors` | CA-01 |
 | `apps/web` | `packages/*` | CA-02 |
-| `packages/conteudo` diretamente nas regras | `packages/dominio` | CA-01 |
+| Leitura direta de ficheiros de conteúdo (`node:fs`, Markdown, YAML) | `apps/web` | CA-02 |
 
 ---
 
@@ -66,8 +87,8 @@ packages/dominio    (entidades, regras e interfaces de repositório; sem depend�
 
 | ID | Regra |
 |---|---|
-| CA-01 | `packages/dominio` não importa nada externo |
-| CA-02 | Importações só na direção `web` → `conteudo` → `dominio` |
+| CA-01 | `packages/dominio` só importa `packages/errors`; `errors` não importa nada |
+| CA-02 | Importações só nas direções permitidas (ver Arquitetura) |
 | DIP | O domínio define interfaces de repositório (ex.: `ApoioRepository`); `conteudo` implementa-as |
 | SRP | Uma razão para mudar por módulo |
 | TS-01 | Sem `any` |
@@ -88,6 +109,7 @@ packages/dominio    (entidades, regras e interfaces de repositório; sem depend�
 | TXT-01 | Textos da interface e nome do site num único módulo tipado |
 | JS-01 | Server Components por defeito; `"use client"` só com justificação escrita no PR |
 | A11Y-01 | HTML semântico, foco visível, alvos ≥ 44 px, testado a 320 px e sem JavaScript |
+| A11Y-02 | Além do axe, avaliação **manual** de cada tipo de página novo ou alterado: só teclado, leitor de ecrã (NVDA no Windows, TalkBack no Android), zoom a 200 % e 320 px. Resultado registado no PR |
 | DEP-01 | Cada nova dependência justificada no plano |
 | SONAR-01 | Resolver avisos do SonarCloud no PR antes do merge |
 
